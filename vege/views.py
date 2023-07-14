@@ -35,12 +35,14 @@ def recipes(request):
 
 
 # Creating function to delete recipe using request and the id of the item.
+@login_required(login_url= '/login/')
 def delete_recipe(request, id):
     queryset = Recipe.objects.get(id = id)
     queryset.delete()
     return redirect('/recipes/')
 
 # Creating function to update already existing recipe.
+@login_required(login_url= '/login/')
 def update_recipe(request, id):
     queryset = Recipe.objects.get(id = id)
     if request.method == "POST":
